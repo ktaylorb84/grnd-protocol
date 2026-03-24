@@ -1,27 +1,18 @@
-
-const express = require("express");
+const express = require('express');
+const multer = require('multer');
 const app = express();
-const PORT = 3000;
 
-app.use(express.json());
+// Multer setup
+const upload = multer({ dest: 'uploads/' });
 
-app.get("/", (req, res) => {
-  res.send("GRND Protocol is running");
+// Test route
+app.get('/', (req, res) => res.send('GRND Protocol Backend is running!'));
+
+// Upload route
+app.post('/upload', upload.single('file'), (req, res) => {
+  res.send({ filename: req.file.filename });
 });
 
-app.post("/earn", (req, res) => {
-  const { user, task } = req.body;
-
-  console.log(`User ${user} completed task: ${task}`);
-
-  res.json({
-    status: "success",
-    reward: Math.floor(Math.random() * 10) + " HUSTL"
-  });
-});
-
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-});
-
-Yahoo Mail: Search, Organize, Conquer
+// Fly.io requires listening on process.env.PORT
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
