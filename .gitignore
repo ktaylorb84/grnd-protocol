@@ -1,0 +1,17 @@
+# Node modules
+node_modules/
+
+# Uploaded files
+uploads/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environment files (if you use .env for secrets)
+.env
+
+# OS files
+.DS_Store
+Thumbs.db
